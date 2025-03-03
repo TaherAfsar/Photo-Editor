@@ -9,12 +9,25 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "The app needs access to your photos to edit them.",
+        "NSPhotoLibraryAddUsageDescription": "The app needs access to save edited photos to your gallery."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
+      "package": "com.anonymous.PhotoEditor",
+      "config": {
+        "largeHeap": true
       }
     },
     "web": {
@@ -24,6 +37,24 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app needs access to your photos to edit them.",
+          "savePhotosPermission": "The app needs access to save edited photos to your gallery.",
+          "android": {
+            "maxWidth": 1920,
+            "maxHeight": 1920
+          }
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "The app accesses your photos to save edited images.",
+          "savePhotosPermission": "The app needs access to save edited photos to your gallery."
+        }
+      ],
       [
         "expo-splash-screen",
         {
